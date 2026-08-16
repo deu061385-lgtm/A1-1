@@ -67,3 +67,6 @@ GenAI 미션들을 진행하며 쌓인 프롬프트를 한곳에서 체계적으
 - `toggle_favorite()` : 즐겨찾기 추가/해제
 - `show_favorites()` : 즐겨찾기 목록 조회
 - `main()` : 메인 실행 및 메뉴 분기
+git add .
+git commit -m "README.md 작성"
+git push

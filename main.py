@@ -59,7 +59,20 @@ def show_menu():
     print("6. 즐겨찾기 관리")
     print("7. 즐겨찾기 목록")
     print("0. 종료")
+# 프롬프트 목록 보기 함수
+def show_list():
+    print("\n=== 프롬프트 목록 ===")
 
+    if len(prompts) == 0:
+        print("등록된 프롬프트가 없습니다.")
+        return
+
+    for i in range(len(prompts)):
+        p = prompts[i]
+        star = " ⭐" if p["favorite"] else ""
+        print(f"{i + 1}. [{p['category']}] {p['title']}{star}")
+
+    print(f"\n총 {len(prompts)}개의 프롬프트")
 
 # 메인 실행
 def main():
@@ -70,8 +83,13 @@ def main():
         if choice == "0":
             print("프로그램을 종료합니다.")
             break
+        elif choice == "2":
+            show_list()
         else:
             print("아직 준비 중인 기능입니다.")
 
 
-main()
+if __name__ == "__main__":
+    main()
+
+

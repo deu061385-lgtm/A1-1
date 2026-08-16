@@ -73,7 +73,44 @@ def show_list():
         print(f"{i + 1}. [{p['category']}] {p['title']}{star}")
 
     print(f"\n총 {len(prompts)}개의 프롬프트")
+# 프롬프트 추가 함수
+def add_prompt():
+    print("\n=== 프롬프트 추가 ===")
 
+    # 제목 입력 (빈 값이면 다시 입력)
+    title = input("제목: ")
+    while title.strip() == "":
+        print("제목을 입력해주세요.")
+        title = input("제목: ")
+
+    # 내용 입력 (빈 값이면 다시 입력)
+    content = input("내용: ")
+    while content.strip() == "":
+        print("내용을 입력해주세요.")
+        content = input("내용: ")
+
+    # 카테고리 선택
+    print("\n카테고리 선택:")
+    for i in range(len(categories)):
+        print(f"{i + 1}) {categories[i]}")
+    category_choice = input("선택: ")
+
+    # 번호로 선택했으면 해당 카테고리명으로 변환, 아니면 직접 입력한 값 사용
+    if category_choice.isdigit() and 1 <= int(category_choice) <= len(categories):
+        category = categories[int(category_choice) - 1]
+    else:
+        category = category_choice
+
+    # 새 프롬프트 딕셔너리 생성
+    new_prompt = {
+        "title": title,
+        "content": content,
+        "category": category,
+        "favorite": False
+    }
+
+    prompts.append(new_prompt)
+    print("\n프롬프트가 추가되었습니다!")
 # 메인 실행
 def main():
     while True:
@@ -83,6 +120,8 @@ def main():
         if choice == "0":
             print("프로그램을 종료합니다.")
             break
+        elif choice == "1":
+            add_prompt()
         elif choice == "2":
             show_list()
         else:

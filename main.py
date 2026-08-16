@@ -111,6 +111,35 @@ def add_prompt():
 
     prompts.append(new_prompt)
     print("\n프롬프트가 추가되었습니다!")
+    # 카테고리별 조회 함수
+def show_by_category():
+    print("\n=== 카테고리별 조회 ===")
+
+    for i in range(len(categories)):
+        print(f"{i + 1}) {categories[i]}")
+
+    choice = input("선택: ")
+
+    if not (choice.isdigit() and 1 <= int(choice) <= len(categories)):
+        print("잘못된 번호입니다.")
+        return
+
+    selected_category = categories[int(choice) - 1]
+
+    print(f"\n[{selected_category}] 카테고리 프롬프트:")
+
+    found_count = 0
+    for i in range(len(prompts)):
+        p = prompts[i]
+        if p["category"] == selected_category:
+            found_count += 1
+            star = " ⭐" if p["favorite"] else ""
+            print(f"{found_count}. {p['title']}{star}")
+
+    if found_count == 0:
+        print("해당 카테고리에 프롬프트가 없습니다.")
+    else:
+        print(f"\n총 {found_count}개의 프롬프트")
 # 메인 실행
 def main():
     while True:
@@ -124,6 +153,8 @@ def main():
             add_prompt()
         elif choice == "2":
             show_list()
+        elif choice == "3":
+            show_by_category()      
         else:
             print("아직 준비 중인 기능입니다.")
 
